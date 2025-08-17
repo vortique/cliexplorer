@@ -1,0 +1,31 @@
+﻿using System;
+using System.Linq;
+
+namespace CLIExplorer
+{
+    public static class Initializer
+    {
+        public static void InitCommands()
+        {
+            // add commands prefix with how to create them in lambda.
+
+            CommandHandler.avaibleCommands.Add(LsCommand.CommandPrefix, () => new LsCommand());
+
+            // add commands prefix with how to create them in lambda.
+
+            var avaiblePrefixs = CommandHandler.avaibleCommands.Keys;
+
+            foreach (var prefix in avaiblePrefixs)
+            {
+                if (avaiblePrefixs.Count(p => p == prefix) > 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"WARNING: There is multiple prefix occurances for {prefix}. " +
+                        $"Most likely, only the command with the same prefix that was initialized first will run. " +
+                        $"If you have modified the code, please take this warning into consideration.");
+                    Console.ResetColor();
+                }
+            }
+        } 
+    }
+}
