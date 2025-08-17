@@ -22,4 +22,4 @@ Here are the upcoming features planned for future versions:
 
 ## License
 
-This project licensed under [GPL v3.0](LICENSE).
+This project licensed under [GPL v3.0](LICENSE.txt).
