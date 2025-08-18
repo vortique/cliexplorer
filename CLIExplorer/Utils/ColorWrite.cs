@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CLIExplorer
+namespace CLIExplorer.Utils
 {
     public static class ColorWrite
     {

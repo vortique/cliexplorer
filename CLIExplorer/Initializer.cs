@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CLIExplorer.Commands;
+using System;
 using System.Linq;
 
 namespace CLIExplorer
@@ -10,6 +11,9 @@ namespace CLIExplorer
             // add commands prefix with how to create them in lambda.
 
             CommandHandler.avaibleCommands.Add(LsCommand.CommandPrefix, () => new LsCommand());
+            CommandHandler.avaibleCommands.Add(CwdCommand.CommandPrefix, () => new CwdCommand());
+            CommandHandler.avaibleCommands.Add(ExitCommand.CommandPrefix, () => new ExitCommand());
+            CommandHandler.avaibleCommands.Add(EchoCommand.CommandPrefix, () => new EchoCommand());
 
             // add commands prefix with how to create them in lambda.
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CLIExplorer
+namespace CLIExplorer.Utils
 {
     public static class AppInfo
     {
@@ -13,9 +13,9 @@ namespace CLIExplorer
         {
             Console.Write("Welcome to the ");
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.Write($"{AppInfo.Name}!");
+            Console.Write($"{Name}!");
             Console.ResetColor();
-            Console.Write($"\nThis project is licensed under {AppInfo.License}. Please behave know what you have and what you don't have.");
+            Console.Write($"\nThis project is licensed under {License}. Please behave knowing what you have and what you don't have.");
             Console.WriteLine();
         }
     }
