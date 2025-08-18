@@ -31,28 +31,17 @@ namespace CLIExplorer.Commands
 
         public static string ParseCommandContent(string prefix, string command)
         {
-            string parsedCommand = command.Replace($"{prefix}", "").Trim();
+            if (command.StartsWith(prefix))
+            {
+                return command.Substring(prefix.Length).Trim();
+            }
 
-            return parsedCommand;
+            return command.Trim();
         }
 
         private static string ParseCommandPrefix(string userCommand)
         {
-            StringBuilder command = new StringBuilder();
-
-            foreach (char character in userCommand)
-            {
-                if (character != ' ')
-                {
-                    command.Append(character);
-                }
-                else
-                {
-                    return command.ToString();
-                }
-            }
-
-            return command.ToString();
+            return userCommand.Split(' ', 2)[0];
         } 
     }
 }
