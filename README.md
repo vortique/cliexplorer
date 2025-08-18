@@ -18,6 +18,8 @@ All implemented commands are simple and straightforward to use.
 
 Replaces every `${<command>}` string with the output of that `<command>`.
 
+> Note: This feature is only works on cwd. Because it would be illogical to use it with other commands.
+
 **Example**:
 ```commandline
 (C:\Users\vortique) $ cwd
