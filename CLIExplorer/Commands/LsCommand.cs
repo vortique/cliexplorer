@@ -27,11 +27,15 @@ namespace CLIExplorer.Commands
 
                 foreach (string dir in directoriesFound)
                 {
-                    ColorWrite.WriteColored(ConsoleColor.Blue, $"(dir) {dir}");
+                    string directoryName = dir.Replace(path + @"\", "");
+
+                    ColorWrite.WriteColored(ConsoleColor.Blue, $"(dir) {directoryName}\\");
                 }
                 foreach (string file in filesFound)
                 {
-                    Console.WriteLine($"(file) {file}");
+                    string fileName = file.Replace(path + @"\", "");
+
+                    Console.WriteLine($"(file) {fileName}");
                 }
 
                 return 0;
