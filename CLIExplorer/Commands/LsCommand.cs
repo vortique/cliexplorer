@@ -11,7 +11,9 @@ namespace CLIExplorer.Commands
 
         public bool Run(string userCommand)
         {
-            int exitCode = ListDirectory(userCommand);
+            string path = CommandHandler.ParseCommandContent(CommandPrefix, userCommand);
+
+            int exitCode = ListDirectory(path);
 
             return exitCode == 0;
         }

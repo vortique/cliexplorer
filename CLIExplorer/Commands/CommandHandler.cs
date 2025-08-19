@@ -14,13 +14,12 @@ namespace CLIExplorer.Commands
         {
             userCommand = VariableExpansionParser.Parse(userCommand);
             string prefix = ParseCommandPrefix(userCommand);
-            string commandContent = ParseCommandContent(prefix, userCommand);
 
             if (avaibleCommands.ContainsKey(prefix)) // if commands prefix that user inputted exists...
             {
                 var commandObject = avaibleCommands[prefix](); // ...create inputted commands object...
 
-                if (!commandObject.Run(commandContent)) // ...and run the command.
+                if (!commandObject.Run(userCommand)) // ...and run the command.
                 {
                     ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: Error occured in previous command.");
                 }

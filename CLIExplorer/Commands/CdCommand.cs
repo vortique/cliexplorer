@@ -20,6 +20,13 @@ namespace CLIExplorer.Commands
 
         private int ChangeDirectory(string path)
         {
+            if (string.IsNullOrWhiteSpace(path)) // if no sub-dir name inputted...
+            {
+                Environment.CurrentDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile); // ...change CWD with user's home dir
+
+                return 0;
+            }
+
             string[] directoriesFound = Directory.GetDirectories(Environment.CurrentDirectory); // Array of every sub-directory in current directory
 
             for (int i = 0; i < directoriesFound.Length; i++)
@@ -38,13 +45,6 @@ namespace CLIExplorer.Commands
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(path)) // if no sub-dir name inputted...
-                {
-                    Environment.CurrentDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile); // ...change CWD with user's home dir
-
-                    return 0;
-                }
-
                 if (Directory.Exists(path))
                 {
                     Environment.CurrentDirectory = path;
