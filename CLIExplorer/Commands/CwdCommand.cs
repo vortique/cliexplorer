@@ -18,12 +18,12 @@ namespace CLIExplorer.Commands
 
         public static string ReturnCurrentWorkingDirectory()
         {
-            return Environment.CurrentDirectory;
+            return Environment.CurrentDirectory; // returns CWD
         }
 
         private int WriteCurrentWorkingDirectory()
         {
-            ColorWrite.WriteColored(ConsoleColor.Blue, Environment.CurrentDirectory);
+            ColorWrite.WriteColored(ConsoleColor.Blue, Environment.CurrentDirectory); // prints CWD
 
             return 0;
         }

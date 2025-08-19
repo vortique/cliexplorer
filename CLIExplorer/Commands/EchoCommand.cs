@@ -18,7 +18,7 @@ namespace CLIExplorer.Commands
 
         private int WriteStringToConsole(string message)
         {
-            Console.WriteLine(message);
+            Console.WriteLine(message); // prints commands content
 
             return 0;
         }

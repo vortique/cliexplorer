@@ -22,7 +22,7 @@ namespace CLIExplorer
 
             foreach (var prefix in avaiblePrefixs)
             {
-                if (avaiblePrefixs.Count(p => p == prefix) > 1)
+                if (avaiblePrefixs.Count(p => p == prefix) > 1) // looks for if there more occurances of that prefix more than 1.
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine($"WARNING: There is multiple prefix occurances for {prefix}. " +

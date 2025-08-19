@@ -17,7 +17,7 @@ namespace CLIExplorer.Commands
             {
                 try
                 {
-                    Environment.Exit(exitCode);
+                    CLIExplorer.exitInitialized = true;
 
                     return true;
                 }

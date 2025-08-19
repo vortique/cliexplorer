@@ -22,18 +22,20 @@ namespace CLIExplorer.Commands
         {
             try
             {
-                string[] directoriesFound = Directory.GetDirectories(path);
-                string[] filesFound = Directory.GetFiles(path);
+                string[] directoriesFound = Directory.GetDirectories(path); // Array of every sub-directory in current directory
+                string[] filesFound = Directory.GetFiles(path); // Array of every file in current directory
 
                 foreach (string dir in directoriesFound)
                 {
-                    string directoryName = dir.Replace(path + @"\", "");
+                    string directoryName = dir.Replace($"{path}\\", ""); // replaces CWD\ with empty string 
+                                                                         // to get every sub-dir's name
 
                     ColorWrite.WriteColored(ConsoleColor.Blue, $"(dir) {directoryName}\\");
                 }
                 foreach (string file in filesFound)
                 {
-                    string fileName = file.Replace(path + @"\", "");
+                    string fileName = file.Replace($"{path}\\", ""); // replaces CWD\ with empty string 
+                                                                     // to get every files name
 
                     Console.WriteLine($"(file) {fileName}");
                 }
