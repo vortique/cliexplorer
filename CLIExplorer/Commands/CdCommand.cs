@@ -45,6 +45,13 @@ namespace CLIExplorer.Commands
                     return 0;
                 }
 
+                if (Directory.Exists(path))
+                {
+                    Environment.CurrentDirectory = path;
+
+                    return 0;
+                }
+
                 ColorWrite.WriteColored(ConsoleColor.Red, $"ERROR: Directory not found.");
 
                 return 1;

@@ -11,9 +11,7 @@ namespace CLIExplorer.Commands
 
         public bool Run(string userCommand)
         {
-            string path = Environment.CurrentDirectory;
-
-            int exitCode = ListDirectory(path);
+            int exitCode = ListDirectory(userCommand);
 
             return exitCode == 0;
         }
@@ -22,25 +20,60 @@ namespace CLIExplorer.Commands
         {
             try
             {
-                string[] directoriesFound = Directory.GetDirectories(path); // Array of every sub-directory in current directory
-                string[] filesFound = Directory.GetFiles(path); // Array of every file in current directory
-
-                foreach (string dir in directoriesFound)
+                if (string.IsNullOrWhiteSpace(path))
                 {
-                    string directoryName = dir.Replace($"{path}\\", ""); // replaces CWD\ with empty string 
-                                                                         // to get every sub-dir's name
+                    path = Environment.CurrentDirectory;
 
-                    ColorWrite.WriteColored(ConsoleColor.Blue, $"(dir) {directoryName}\\");
+                    string[] directoriesFound = Directory.GetDirectories(path); // Array of every sub-directory in current directory
+                    string[] filesFound = Directory.GetFiles(path); // Array of every file in current directory
+
+                    foreach (string dir in directoriesFound)
+                    {
+                        string directoryName = dir.Replace($"{path}\\", ""); // replaces CWD\ with empty string 
+                                                                             // to get every sub-dir's name
+
+                        ColorWrite.WriteColored(ConsoleColor.Blue, $"(dir) {directoryName}\\");
+                    }
+                    foreach (string file in filesFound)
+                    {
+                        string fileName = file.Replace($"{path}\\", ""); // replaces CWD\ with empty string 
+                                                                         // to get every files name
+
+                        Console.WriteLine($"(file) {fileName}");
+                    }
+
+                    return 0;
                 }
-                foreach (string file in filesFound)
+                else
                 {
-                    string fileName = file.Replace($"{path}\\", ""); // replaces CWD\ with empty string 
-                                                                     // to get every files name
+                    if (Directory.Exists(path))
+                    {
+                        string[] directoriesFound = Directory.GetDirectories(path); // Array of every sub-directory in current directory
+                        string[] filesFound = Directory.GetFiles(path); // Array of every file in current directory
 
-                    Console.WriteLine($"(file) {fileName}");
+                        foreach (string dir in directoriesFound)
+                        {
+                            string directoryName = dir.Replace($"{path}\\", ""); // replaces CWD\ with empty string 
+                                                                                 // to get every sub-dir's name
+
+                            ColorWrite.WriteColored(ConsoleColor.Blue, $"(dir) {directoryName}\\");
+                        }
+                        foreach (string file in filesFound)
+                        {
+                            string fileName = file.Replace($"{path}\\", ""); // replaces CWD\ with empty string 
+                                                                             // to get every files name
+
+                            Console.WriteLine($"(file) {fileName}");
+                        }
+
+                        return 0;
+                    }
+                    else
+                    {
+                        ColorWrite.WriteColored(ConsoleColor.Red, $"ERROR: Directory named '{path}' not found.");
+                        return 1;
+                    }
                 }
-
-                return 0;
             }
             catch (DirectoryNotFoundException)
             {
