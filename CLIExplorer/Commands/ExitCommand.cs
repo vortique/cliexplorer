@@ -15,18 +15,9 @@ namespace CLIExplorer.Commands
 
             if (exitCode == 0)
             {
-                try
-                {
-                    CLIExplorer.exitInitialized = true;
+                CLIExplorer.exitInitialized = true;
 
-                    return true;
-                }
-                catch (SecurityException)
-                {
-                    ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: No permission to exit from program with code. Try: Ctrl + C");
-
-                    return false;
-                }
+                return true;
             }
             else
             {
