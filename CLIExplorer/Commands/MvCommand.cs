@@ -32,8 +32,7 @@ namespace CLIExplorer.Commands
                 {
                     if (Directory.Exists(paths[1]))
                     {
-
-                        File.Move(paths[0], paths[1] + Path.GetFileName(paths[0]));
+                        File.Move(paths[0], Path.Join(paths[1], Path.GetFileName(paths[0])));
                         return 0;
                     }
 
@@ -41,7 +40,17 @@ namespace CLIExplorer.Commands
 
                     return 0;
                 }
-                return 1;
+                else
+                {
+                    if (Directory.Exists(paths[1]))
+                    {
+                        Directory.Move(paths[0], Path.Join(paths[1], Path.GetFileName(paths[0])));
+                        return 0;
+                    }
+
+                    Directory.Move(paths[0], paths[1]);
+                }
+                    return 1;
             }
             catch (FileNotFoundException)
             {
