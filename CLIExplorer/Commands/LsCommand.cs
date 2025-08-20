@@ -15,6 +15,8 @@ namespace CLIExplorer.Commands
 
             int exitCode = ListDirectory(path);
 
+            int exitCode = ListDirectory(path);
+
             return exitCode == 0;
         }
 
@@ -22,60 +24,25 @@ namespace CLIExplorer.Commands
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(path))
+                string[] directoriesFound = Directory.GetDirectories(path); // Array of every sub-directory in current directory
+                string[] filesFound = Directory.GetFiles(path); // Array of every file in current directory
+
+                foreach (string dir in directoriesFound)
                 {
-                    path = Environment.CurrentDirectory;
+                    string directoryName = dir.Replace($"{path}\\", ""); // replaces CWD\ with empty string 
+                                                                         // to get every sub-dir's name
 
-                    string[] directoriesFound = Directory.GetDirectories(path); // Array of every sub-directory in current directory
-                    string[] filesFound = Directory.GetFiles(path); // Array of every file in current directory
-
-                    foreach (string dir in directoriesFound)
-                    {
-                        string directoryName = dir.Replace($"{path}\\", ""); // replaces CWD\ with empty string 
-                                                                             // to get every sub-dir's name
-
-                        ColorWrite.WriteColored(ConsoleColor.Blue, $"(dir) {directoryName}\\");
-                    }
-                    foreach (string file in filesFound)
-                    {
-                        string fileName = file.Replace($"{path}\\", ""); // replaces CWD\ with empty string 
-                                                                         // to get every files name
-
-                        Console.WriteLine($"(file) {fileName}");
-                    }
-
-                    return 0;
+                    ColorWrite.WriteColored(ConsoleColor.Blue, $"(dir) {directoryName}\\");
                 }
-                else
+                foreach (string file in filesFound)
                 {
-                    if (Directory.Exists(path))
-                    {
-                        string[] directoriesFound = Directory.GetDirectories(path); // Array of every sub-directory in current directory
-                        string[] filesFound = Directory.GetFiles(path); // Array of every file in current directory
+                    string fileName = file.Replace($"{path}\\", ""); // replaces CWD\ with empty string 
+                                                                     // to get every files name
 
-                        foreach (string dir in directoriesFound)
-                        {
-                            string directoryName = dir.Replace($"{path}\\", ""); // replaces CWD\ with empty string 
-                                                                                 // to get every sub-dir's name
-
-                            ColorWrite.WriteColored(ConsoleColor.Blue, $"(dir) {directoryName}\\");
-                        }
-                        foreach (string file in filesFound)
-                        {
-                            string fileName = file.Replace($"{path}\\", ""); // replaces CWD\ with empty string 
-                                                                             // to get every files name
-
-                            Console.WriteLine($"(file) {fileName}");
-                        }
-
-                        return 0;
-                    }
-                    else
-                    {
-                        ColorWrite.WriteColored(ConsoleColor.Red, $"ERROR: Directory named '{path}' not found.");
-                        return 1;
-                    }
+                    Console.WriteLine($"(file) {fileName}");
                 }
+
+                return 0;
             }
             catch (DirectoryNotFoundException)
             {

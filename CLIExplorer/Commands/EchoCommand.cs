@@ -9,7 +9,9 @@ namespace CLIExplorer.Commands
 
         public bool Run(string userCommand)
         {
-            int exitCode = WriteStringToConsole(userCommand);
+            string message = CommandHandler.ParseCommandContent(CommandPrefix, userCommand);
+
+            int exitCode = WriteStringToConsole(message);
 
             return exitCode == 0;
         }
