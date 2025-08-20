@@ -7,7 +7,7 @@ namespace CLIExplorer.Commands
 {
     public class CdCommand : ICommand
     {
-        public static string CommandPrefix => "cd";
+        public static string CommandPrefix = "cd";
 
         public bool Run(string userCommand)
         {

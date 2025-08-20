@@ -9,6 +9,7 @@ namespace CLIExplorer.Utils
         public static readonly string[] Authors = { "vortique" }; // Project author(s)
         public const string License = "GPL v3.0"; // Project license
 
+
         public static void GreetingMessage() // Greeting message for CLIExplorer.cs
         {
             Console.Write("Welcome to the ");

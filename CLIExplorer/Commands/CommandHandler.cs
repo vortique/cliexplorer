@@ -25,7 +25,7 @@ namespace CLIExplorer.Commands
             }
             else
             {
-                ColorWrite.WriteColored(ConsoleColor.Red, $"ERROR: No commands found named '{userCommand}'.");
+                ColorWrite.WriteColored(ConsoleColor.Red, $"ERROR: No commands found named '{prefix}'.");
             }
         }
 

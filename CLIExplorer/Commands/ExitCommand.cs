@@ -7,7 +7,7 @@ namespace CLIExplorer.Commands
 {
     internal class ExitCommand : ICommand
     {
-        public static string? CommandPrefix => "exit";
+        public static string CommandPrefix => "exit";
 
         public bool Run(string userCommand)
         {

@@ -15,8 +15,6 @@ namespace CLIExplorer.Commands
 
             int exitCode = ListDirectory(path);
 
-            int exitCode = ListDirectory(path);
-
             return exitCode == 0;
         }
 
@@ -24,34 +22,32 @@ namespace CLIExplorer.Commands
         {
             try
             {
-                string[] directoriesFound = Directory.GetDirectories(path); // Array of every sub-directory in current directory
-                string[] filesFound = Directory.GetFiles(path); // Array of every file in current directory
-
-                foreach (string dir in directoriesFound)
+                if (string.IsNullOrWhiteSpace(path))
                 {
-                    string directoryName = dir.Replace($"{path}\\", ""); // replaces CWD\ with empty string 
-                                                                         // to get every sub-dir's name
+                    path = Environment.CurrentDirectory;
 
-                    ColorWrite.WriteColored(ConsoleColor.Blue, $"(dir) {directoryName}\\");
+                    WriteDirectories(path);
+
+                    return 0;
                 }
-                foreach (string file in filesFound)
+                else
                 {
-                    string fileName = file.Replace($"{path}\\", ""); // replaces CWD\ with empty string 
-                                                                     // to get every files name
+                    if (Directory.Exists(path))
+                    {
+                        WriteDirectories(path);
 
-                    Console.WriteLine($"(file) {fileName}");
+                        return 0;
+                    }
+                    else
+                    {
+                        ColorWrite.WriteColored(ConsoleColor.Red, $"ERROR: Directory named '{path}' not found.");
+                        return 1;
+                    }
                 }
-
-                return 0;
             }
             catch (DirectoryNotFoundException)
             {
                 ColorWrite.WriteColored(ConsoleColor.Red, $"ERROR: Directory named '{path}' not found.");
-                return 1;
-            }
-            catch (FileNotFoundException)
-            {
-                ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: File not found.");
                 return 1;
             }
             catch (UnauthorizedAccessException)
@@ -64,10 +60,26 @@ namespace CLIExplorer.Commands
                 ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: Path too long.");
                 return 1;
             }
-            catch (ArgumentNullException)
+        }
+
+        private void WriteDirectories(string path)
+        {
+            string[] directoriesFound = Directory.GetDirectories(path); // Array of every sub-directory in current directory
+            string[] filesFound = Directory.GetFiles(path); // Array of every file in current directory
+
+            foreach (string dir in directoriesFound)
             {
-                ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: No paths found.");
-                return 1;
+                string directoryName = Path.GetFileName(dir); // replaces CWD\ with empty string 
+                                                                     // to get every sub-dir's name
+
+                ColorWrite.WriteColored(ConsoleColor.Blue, $"(dir) {directoryName}/");
+            }
+            foreach (string file in filesFound)
+            {
+                string fileName = Path.GetFileName(file); // replaces CWD\ with empty string 
+                                                          // to get every files name
+
+                Console.WriteLine($"(file) {fileName}");
             }
         }
     }

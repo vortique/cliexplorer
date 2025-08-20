@@ -36,7 +36,7 @@ Here are the upcoming features planned for future versions:
 - [x] Variable expansion (`${cwd}` -> Environment.CurrentDirectory)
 - [x] `cd` command
 - [ ] `cp` command
-- [ ] `mv` command
+- [x] `mv` command
 - [ ] `grep` command
 - [ ] *...and endless ideas in my brain.* 🚀
 
