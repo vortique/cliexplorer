@@ -5,7 +5,7 @@ namespace CLIExplorer.Utils
     public static class AppInfo
     {
         public const string Name = "CLIExplorer"; // Project name
-        public const string Version = "1.3.1"; // Project version
+        public const string Version = "1.4.0"; // Project version
         public static readonly string[] Authors = { "vortique" }; // Project author(s)
         public const string License = "GPL v3.0"; // Project license
 

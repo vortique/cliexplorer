@@ -14,11 +14,11 @@ namespace CLIExplorer.Commands
 
             while ((containsVariable = userCommand.Contains(variableExpansionToken)))
             {
-                int tokenIndex = userCommand.IndexOf('$') + 1;
+                int tokenIndex = userCommand.IndexOf(variableExpansionToken);
 
                 StringBuilder command = new StringBuilder();
 
-                for (int i = tokenIndex + 1; i < userCommand.Length; i++)
+                for (int i = tokenIndex + 2; i < userCommand.Length; i++)
                 {
                     if (userCommand[i] != '}')
                     {
@@ -38,8 +38,6 @@ namespace CLIExplorer.Commands
                         }
                         else
                         {
-                            ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: Unrecognized variable expansion command.");
-
                             return userCommand;
                         }
                     }

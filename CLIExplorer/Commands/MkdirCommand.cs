@@ -20,6 +20,11 @@ namespace CLIExplorer.Commands
 
         private int MakeDirectory(string path)
         {
+            if (string.IsNullOrEmpty(path))
+            {
+                ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: No paths entered.");
+            }
+
             try
             {
                 Directory.CreateDirectory(path);

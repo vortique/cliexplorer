@@ -22,12 +22,19 @@ namespace CLIExplorer.Commands
 
         private int MoveDirectoryOrFile(string commandContent)
         {
+            if (string.IsNullOrEmpty(commandContent))
+            {
+                ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: No paths entered.");
+
+                return 1;
+            }
+
             string[] paths = commandContent.Split(' ');
+
+            char path0Type = File.GetAttributes(paths[0]).HasFlag(FileAttributes.Directory) ? 'd' : 'f'; // f = file, d = directory
 
             try
             {
-                char path0Type = File.GetAttributes(paths[0]).HasFlag(FileAttributes.Directory) ? 'd' : 'f'; // f = file, d = directory
-
                 if (path0Type == 'f')
                 {
                     if (Directory.Exists(paths[1]))
@@ -61,6 +68,12 @@ namespace CLIExplorer.Commands
             catch (DirectoryNotFoundException)
             {
                 ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: Directory not found.");
+
+                return 1;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: Not enough paths.");
 
                 return 1;
             }

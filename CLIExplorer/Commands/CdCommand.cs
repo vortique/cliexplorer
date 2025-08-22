@@ -20,7 +20,7 @@ namespace CLIExplorer.Commands
 
         private int ChangeDirectory(string path)
         {
-            if (string.IsNullOrWhiteSpace(path)) // if no sub-dir name inputted...
+            if (string.IsNullOrEmpty(path)) // if no sub-dir name inputted...
             {
                 Environment.CurrentDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile); // ...change CWD with user's home dir
 
