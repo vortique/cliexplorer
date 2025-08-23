@@ -1,6 +1,6 @@
 # CLIExplorer 👁️
 
-A file **explorer** for **CLI**. This program mostly relies on re-implementations of basic UNIX commands in C# and makes your life easier!
+A file **explorer** for **CLI**. This program mostly relies on re-implementations of basic UNIX commands in C#.
 
 ## Documentation
 
@@ -47,4 +47,4 @@ Here are the upcoming features planned for future versions:
 
 ## License
 
-This project licensed under This project is licensed under the [GPL v3.0](LICENSE.txt) license..
+This project licensed under This project is licensed under the [GPL v3.0](LICENSE.txt) license.
