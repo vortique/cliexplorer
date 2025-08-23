@@ -6,13 +6,18 @@ A file **explorer** for **CLI**. This program mostly relies on re-implementation
 
 All implemented commands are simple and straightforward to use.
 
-| Command         | Description                                                                 |
-| --------------- | --------------------------------------------------------------------------- |
-| `ls`            | Lists all directories and files in the **current working directory (cwd)**. |
-| `cwd`           | Prints current working directory.                                           |
-| `cd <dir>`      | Changes current working directory.                                          |
-| `echo <string>` | Prints everything written after the command prefix (echo).                  |
-| `exit`          | Exits from program.                                                         |
+| Command                             | Description                                                                 |
+| ----------------------------------- | --------------------------------------------------------------------------- |
+| `ls`                                | Lists all directories and files in the **current working directory (cwd)**. |
+| `cwd`                               | Prints current working directory.                                           |
+| `cd <dir>`                          | Changes current working directory.                                          |
+| `echo <string>`                     | Prints everything written after the command prefix (echo).                  |
+| `cp <sourcePath> <destinationPath>` | Copies file/directory in the source path to destination path.               |
+| `mkdir <(abs/relative)path>`        | Creates directory to given path.                                            |
+| `rmdir <(abs/relative)path>`        | Removes directory from given path.                                          |
+| `mv <sourcePath> <destinationPath>` | Moves file/directory in source path to destination path.                    |
+| `exit`                              | Exits from program.                                                         |
+| `clear`                             | Clears terminal.                                                            |
 
 ### Variable Expansion
 
@@ -35,7 +40,7 @@ Here are the upcoming features planned for future versions:
 - [x] `cwd` (current working directory) command
 - [x] Variable expansion (`${cwd}` -> Environment.CurrentDirectory)
 - [x] `cd` command
-- [ ] `cp` command
+- [x] `cp` command
 - [x] `mv` command
 - [ ] `grep` command
 - [ ] *...and endless ideas in my brain.* 🚀
