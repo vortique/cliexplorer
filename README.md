@@ -47,4 +47,4 @@ Here are the upcoming features planned for future versions:
 
 ## License
 
-This project licensed under This project is licensed under the [GPL v3.0](LICENSE.txt) license.
+This project is licensed under the [GPL v3.0](LICENSE.txt) license.
