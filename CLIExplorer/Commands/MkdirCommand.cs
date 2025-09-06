@@ -23,6 +23,8 @@ namespace CLIExplorer.Commands
             if (string.IsNullOrEmpty(path))
             {
                 ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: No paths entered.");
+
+                return 1;
             }
 
             try
@@ -39,7 +41,7 @@ namespace CLIExplorer.Commands
             }
             catch (UnauthorizedAccessException)
             {
-                ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: No permission to create directory.");
+                ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: No permission to create a directory.");
 
                 return 1;
             }

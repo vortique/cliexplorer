@@ -23,7 +23,8 @@ namespace CLIExplorer
                 CommandHandler.avaibleCommands.Add(MkdirCommand.CommandPrefix, () => new MkdirCommand());
                 CommandHandler.avaibleCommands.Add(RmdirCommand.CommandPrefix, () => new RmdirCommand());
                 CommandHandler.avaibleCommands.Add(CpCommand.CommandPrefix, () => new CpCommand());
-                CommandHandler.avaibleCommands.Add(CpCommand.CommandPrefix, () => new CpCommand());
+                CommandHandler.avaibleCommands.Add(GrepCommand.CommandPrefix, () => new GrepCommand());
+                CommandHandler.avaibleCommands.Add(CatCommand.CommandPrefix, () => new CatCommand());
 
                 // add commands prefix with how to create them in lambda.
             }

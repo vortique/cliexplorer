@@ -1,8 +1,9 @@
-﻿using CLIExplorer.Utils;
+﻿using CLIExplorer.Commands;
+using CLIExplorer.Utils;
 using System;
 using System.Text;
 
-namespace CLIExplorer.Commands
+namespace CLIExplorer
 {
     public static class VariableExpansionParser
     {

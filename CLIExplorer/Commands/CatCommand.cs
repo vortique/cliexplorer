@@ -2,23 +2,25 @@
 using CLIExplorer.Utils;
 using System;
 using System.IO;
+using System.Text;
+
 
 namespace CLIExplorer.Commands
 {
-    public class RmdirCommand : ICommand
+    public class CatCommand : ICommand
     {
-        public static string CommandPrefix => "rmdir";
+        public static string CommandPrefix => "cat";
 
         public bool Run(string userCommand)
         {
             string path = CommandHandler.ParseCommandContent(CommandPrefix, userCommand);
 
-            int exitCode = RemoveDirectory(path);
+            int exitCode = WriteFile(path);
 
             return exitCode == 0;
         }
 
-        private int RemoveDirectory(string path)
+        public int WriteFile(string path)
         {
             if (string.IsNullOrEmpty(path))
             {
@@ -29,20 +31,22 @@ namespace CLIExplorer.Commands
 
             try
             {
-                Directory.Delete(path);
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    Console.WriteLine(sr.ReadToEnd());
+                }
 
                 return 0;
             }
-
-            catch (DirectoryNotFoundException)
+            catch (FileNotFoundException)
             {
-                ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: Directory not found.");
+                ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: File not found.");
 
                 return 1;
             }
             catch (UnauthorizedAccessException)
             {
-                ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: No permission to remove a directory.");
+                ColorWrite.WriteColored(ConsoleColor.Red, "ERROR: No permissiıon to read the file.");
 
                 return 1;
             }
