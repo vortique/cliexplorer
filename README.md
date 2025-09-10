@@ -42,8 +42,9 @@ Here are the upcoming features planned for future versions:
 - [x] `cd` command
 - [x] `cp` command
 - [x] `mv` command
-- [ ] `grep` command
-- [ ] *...and endless ideas in my brain.* 🚀
+- [x] `grep` command
+- [x] `cat` command
+- [ ] add `cat` command to variable expansion
 
 ## License
 
